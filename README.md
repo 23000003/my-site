@@ -1,7 +1,7 @@
 ## My-Site
 
 A simple web-mobile based app intended for my own in-need things and for fun into a single site :)
-(might as well add more soon)
+
 
 ## Features 
 1. Dashboard
