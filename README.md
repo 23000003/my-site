@@ -4,7 +4,12 @@ A simple web-mobile based app intended for my own in-need things and for fun int
 (might as well add more soon)
 
 ## Features 
-
+1. Dashboard
+2. todo w/ R.T. Email Alert
+3. Note Categories (Add Channel/ Subjects)
+4. Routine Tracker
+5. Site Bookmarks
+(might as well add more soon)
 
 ## Techs
 Next, Typescript, Turso, Drizzle, React/Tanstack Query, Tailwind
