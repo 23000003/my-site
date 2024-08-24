@@ -24,14 +24,13 @@ export default function Landing(): JSX.Element {
         try{
             const validate: any | boolean = await invalidateSecret(secretPass);
             console.log(validate);
-
             if(validate == false){
                 setError("Wrong Secret")
             }else{
-                localStorage.setItem("token", validate.user.myToken);
-                localStorage.setItem("id", validate.user.id);
-                localStorage.setItem("name", validate.user.name);
-                localStorage.setItem("email", validate.user.email);
+                localStorage.setItem("token", validate.User.myToken);
+                localStorage.setItem("id", validate.User.id);
+                localStorage.setItem("name", validate.User.name);
+                localStorage.setItem("email", validate.User.email);
                 navigate.push('/Dashboard');
             }
         }catch(err){
