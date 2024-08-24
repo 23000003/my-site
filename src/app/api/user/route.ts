@@ -7,5 +7,5 @@ export async function GET() {
     
     const result = await db.select().from(usersTable).where(eq(usersTable.id, 1));
 
-    return NextResponse.json({ user: result[0] });
+    return NextResponse.json({ User: result[0] });
 }

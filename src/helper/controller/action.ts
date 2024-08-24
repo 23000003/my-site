@@ -15,9 +15,8 @@ export const invalidateSecret = async(secret: string): Promise<boolean | User> =
     try{
         const data = await axios.get<User>(`${server}/api/user`);
         console.log(data);
-        console.log(data.data.user.myToken);
+        
         return data.data;
-
     }catch(err){
         throw new Error('An unknown error occurred');
     }

@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { invalidateSecret } from '../helper/controller/action';
+import { User } from '@/types/schemaTypes';
 
 export default function Landing(): JSX.Element {
     
@@ -21,7 +22,7 @@ export default function Landing(): JSX.Element {
         setLoading(true);
         
         try{
-            const validate = await invalidateSecret(secretPass);
+            const validate: any | boolean = await invalidateSecret(secretPass);
             console.log(validate);
 
             if(validate == false){
