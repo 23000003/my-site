@@ -1,6 +1,6 @@
 ## My-Site
 
-A simple web-mobile based app intended for my own in-need things into a single site :)
+A simple web-mobile based app intended for my own in-need things and for fun into a single site :)
 (might as well add more soon)
 
 ## Features 
@@ -13,8 +13,8 @@ A simple web-mobile based app intended for my own in-need things into a single s
 ## Techs
 Next, Typescript, Turso, Drizzle, React/Tanstack Query, Tailwind
 
-## Live
-
+## Deployed
+https://my-site-mocha-three.vercel.app/
 
 <hr/>
 
