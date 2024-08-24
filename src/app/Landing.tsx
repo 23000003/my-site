@@ -22,13 +22,13 @@ export default function Landing(): JSX.Element {
         setLoading(true);
         
         try{
-            const validate: any | boolean = await invalidateSecret(secretPass);
+            const validate: User | null = await invalidateSecret(secretPass);
             console.log(validate);
-            if(validate == false){
+            if(validate === null){
                 setError("Wrong Secret")
             }else{
                 localStorage.setItem("token", validate.User.myToken);
-                localStorage.setItem("id", validate.User.id);
+                localStorage.setItem("id", validate.User.id.toString());
                 localStorage.setItem("name", validate.User.name);
                 localStorage.setItem("email", validate.User.email);
                 navigate.push('/Dashboard');
@@ -39,6 +39,8 @@ export default function Landing(): JSX.Element {
         }
         setLoading(false);
     }
+
+
     console.log(error);
     return (
         <div className='w-screen h-screen flex flex-row justify-center items-center'>
