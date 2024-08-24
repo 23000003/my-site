@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Dashboard(): JSX.Element {
-    
+
     return (
         <main className='mt-14 p-5'>
             <div className='flex flex-col bg-white p-5 rounded-xl'>

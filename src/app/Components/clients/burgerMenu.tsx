@@ -46,6 +46,10 @@ export default function BurgerMenu(): JSX.Element {
         setIsOpen(!isOpen);
     };
 
+    if(pathname == '/'){
+        return <></>
+    }
+
     return (
         <>
         <div className='flex items-center h-full px-5 justify-between' onClick={handleClick}>
