@@ -26,14 +26,12 @@ export default function BurgerMenu(): JSX.Element {
                     navigate.push("/");
                     localStorage.removeItem('id');
                     localStorage.removeItem('token');
-                }else{
-                    navigate.push("/Dashboard")
                 }
             }
             getSessW();
         }
         console.log(id);
-    }, [pathname]);
+    }, []);
 
     console.log("Test");
     
