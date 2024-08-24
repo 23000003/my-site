@@ -2,7 +2,7 @@
 import { db } from "@/db";
 import { usersTable } from "@/db/schema";
 import { sql } from 'drizzle-orm';
-import bcrypt from 'bcryptjs';
+// import bcrypt from 'bcryptjs';
 
 export default async function getSession(token: string, id: number){
     
