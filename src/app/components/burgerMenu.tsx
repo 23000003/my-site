@@ -20,9 +20,7 @@ export default function BurgerMenu(): JSX.Element {
             navigate.push('/');
         }else{
             const getSessW = async () => {
-                console.log("hey");
                 const valid = await getSession(token, Number(id));
-                console.log(valid);
                 if(!valid){
                     navigate.push("/");
                     localStorage.removeItem('id');
@@ -82,12 +80,16 @@ export default function BurgerMenu(): JSX.Element {
                     
                     {BurgerMenuInfo.map((burger, index) => (
                         <div 
-                            className='mt-3 cursor-pointer hover:bg-gray-200 px-5 py-3 rounded-lg trasition duration-200' 
+                            className='mt-3 cursor-pointer hover:bg-gray-200 px-5 py-3 rounded-lg trasition duration-200 flex items-center' 
                             key={index}
                             onClick={() => {navigate.push(burger.link), handleClick()}}
                         >
-                            <i className={burger.icon}></i>
-                            <span className='ml-3'>{burger.text}</span>
+                            <div className='flex w-5'>
+                                <i className={burger.icon}></i>
+                            </div>
+                            <div className='flex'>
+                                <span className='ml-3'>{burger.text}</span>
+                            </div>
                         </div>
                     ))}
                 </div>

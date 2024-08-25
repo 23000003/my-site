@@ -39,10 +39,8 @@ export default function Form(): JSX.Element {
             setDate('');
             setDetails('');
             setSubject('');
-            console.log(data);
         }catch(err: any){
             setLoading(false)
-            console.log(err);
             setError(err.message)
         }
     }

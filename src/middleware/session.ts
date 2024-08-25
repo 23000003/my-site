@@ -7,7 +7,6 @@ import { sql } from 'drizzle-orm';
 export default async function getSession(token: string, id: number){
     
     //Instead of JWT why not my own token ?
-    console.log(token, id);
 
     // const salt = await bcrypt.genSalt();
     // const hashed = await bcrypt.hash(token, salt);
@@ -23,7 +22,6 @@ export default async function getSession(token: string, id: number){
     catch(err){
         console.log(err);
         return false;
-
     }
     
 }

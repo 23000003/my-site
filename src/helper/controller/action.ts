@@ -15,8 +15,6 @@ export const invalidateSecret = async(secret: string): Promise<User | null> => {
 
     try{
         const data = await axios.get<User>(`${server}/api/user`);
-        console.log(data);
-
         return data.data;
     }catch(err){
         throw new Error('An unknown error occurred');

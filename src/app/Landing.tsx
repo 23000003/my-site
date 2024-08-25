@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { invalidateSecret } from '../helper/controller/action';
 import { User } from '@/types/schemaTypes';
+import Image from 'next/image';
 
 export default function Landing(): JSX.Element {
     
@@ -18,7 +19,7 @@ export default function Landing(): JSX.Element {
         try{
             setLoading(true);
             const validate: User | null = await invalidateSecret(secretPass);
-            console.log(validate);
+            
             if(validate === null){
                 setLoading(false);
                 setError("Wrong Secret")
@@ -42,7 +43,6 @@ export default function Landing(): JSX.Element {
         }, 5000);
     }, []);
 
-    console.log(loading)
 
     return (
         <div className='w-screen h-screen flex flex-row justify-center items-center'>
