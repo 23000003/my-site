@@ -9,6 +9,7 @@ import getSession from '@/middleware/session';
 export default function BurgerMenu(): JSX.Element {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [slidingAnim, setSlidingAnim] = useState<boolean>(false);
     const pathname = usePathname();
     const navigate = useRouter();
 
@@ -30,10 +31,7 @@ export default function BurgerMenu(): JSX.Element {
             }
             getSessW();
         }
-        console.log(id);
     }, []);
-
-    console.log("Test");
     
     const navLabel = useMemo((): string => {
         const menuItem = BurgerMenuInfo.find(item => item.link === pathname);
@@ -41,7 +39,10 @@ export default function BurgerMenu(): JSX.Element {
       }, [pathname]);
 
     const handleClick = (): void => {
-        setIsOpen(!isOpen);
+        setSlidingAnim(false);
+        setTimeout(() =>{
+            setIsOpen(false);
+        }, 300);
     };
 
     if(pathname == '/'){
@@ -50,9 +51,12 @@ export default function BurgerMenu(): JSX.Element {
 
     return (
         <>
-        <div className='flex items-center h-full px-5 justify-between' onClick={handleClick}>
+        <div className='flex items-center h-full px-5 justify-between'>
             <span className='text-white'>{navLabel}</span>
-            <div className="flex flex-col justify-center items-end h-full mr-5 cursor-pointer mt-1">
+            <div 
+                className="flex flex-col justify-center items-end h-full mr-5 cursor-pointer mt-1" 
+                onClick={() => {setIsOpen(true), setSlidingAnim(true)}}
+            >
                 <span 
                     className='bg-white block h-0.5 w-6 rounded-sm mb-1'
                 ></span>
@@ -68,7 +72,7 @@ export default function BurgerMenu(): JSX.Element {
         {isOpen && (
             <>
             <div className='fixed h-screen w-screen bg-black opacity-50 -mt-14' onClick={handleClick}></div>
-            <div className={`h-screen w-64 bg-white fixed right-0 border-l-2 flex flex-col -mt-14 ${isOpen ? 'ease-in trasition duration-200' : ''}`}>
+            <div className={`h-screen w-64 bg-white fixed right-0 border-l-2 flex flex-col -mt-14 Menu ${slidingAnim ? 'MenuTab-slide-in' : 'MenuTab-slide-out'}`}>
                 <div className='p-6 flex-1'>
                     <div className='flex flex-row items-center'>
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjspNyVZ_RBiG68niLT-38T93kitl5Qk5nNw&s" className='w-10 rounded-3xl' />
@@ -80,7 +84,7 @@ export default function BurgerMenu(): JSX.Element {
                         <div 
                             className='mt-3 cursor-pointer hover:bg-gray-200 px-5 py-3 rounded-lg trasition duration-200' 
                             key={index}
-                            onClick={() => {navigate.push(burger.link), setIsOpen(false)}}
+                            onClick={() => {navigate.push(burger.link), handleClick()}}
                         >
                             <i className={burger.icon}></i>
                             <span className='ml-3'>{burger.text}</span>

@@ -15,25 +15,25 @@ export default function Landing(): JSX.Element {
     const navigate = useRouter();
 
     const PassSecret = async (): Promise<void> => {
-        setLoading(true);
-        
         try{
+            setLoading(true);
             const validate: User | null = await invalidateSecret(secretPass);
             console.log(validate);
             if(validate === null){
+                setLoading(false);
                 setError("Wrong Secret")
             }else{
                 localStorage.setItem("token", validate.User.myToken);
                 localStorage.setItem("id", validate.User.id.toString());
                 localStorage.setItem("name", validate.User.name);
                 localStorage.setItem("email", validate.User.email);
+                setLoading(false);
                 navigate.push('/Dashboard');
             }
         }catch(err){
-            console.log(err)
+            setLoading(false);
             setError("Error Occured");
         }
-        setLoading(false);
     }
 
     useEffect(() =>{
@@ -41,6 +41,8 @@ export default function Landing(): JSX.Element {
             setTime(false);
         }, 5000);
     }, []);
+
+    console.log(loading)
 
     return (
         <div className='w-screen h-screen flex flex-row justify-center items-center'>
@@ -64,7 +66,7 @@ export default function Landing(): JSX.Element {
                         </button>
                     </form>
                     {error && <p className='mt-3 text-red-500'>{error}</p>}
-                    {loading && <p className='mt-3 text-green-500'>Loading....</p>}
+                    {loading && <img src="/loading.gif" alt="loading" className='w-16 mt-4'/>}
                 </div>
             </div>
             ) : (

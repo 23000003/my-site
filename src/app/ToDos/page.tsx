@@ -1,16 +1,18 @@
 import React from 'react'
-import NavigateButton from './Components/client/navigateButton'
+import MyTodos from './todos'
+import NavigateButton from './navigateButton'
+import axios from 'axios'
+import { server } from '@/helper/config'
+import { ToDoType } from '@/types/types'
 
-export default function ToDos(): JSX.Element {
+export default async function ToDos(): Promise<JSX.Element> {
+
+    const MyTodo = await axios.get<{ data: ToDoType[] }>(`${server}/api/Todo`);
+    const passTodo = MyTodo.data.data;
+
     return (
         <main className='mt-14 p-5'>
-            <div className='bg-white w-full h-24 px-5 rounded-md mb-5'>
-                <div className='flex flex-row h-full items-center justify-between w-full'>
-                    <span className='text-lg'>Subject</span>
-                    <span className='text-lg'>Contentt</span>
-                    <span className='text-lg'>8:00PM Friday Aug 12</span>
-                </div>
-            </div>
+            <MyTodos MyTodo = {passTodo}/>
             <NavigateButton linkP='/ToDos/addTodo'/>
         </main>
     )

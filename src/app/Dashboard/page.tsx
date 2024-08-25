@@ -1,14 +1,17 @@
 import React from 'react'
+import { server } from '@/helper/config'
+import { ToDoType } from '@/types/types'
+import axios from 'axios'
+import Incoming from './incoming';
 
-export default function Dashboard(): JSX.Element {
+export default async function Dashboard(): Promise<JSX.Element >{
+
+    const MyTodo = await axios.get<{ data: ToDoType[] }>(`${server}/api/Todo`);
+    const passTodo = MyTodo.data.data;
 
     return (
         <main className='mt-14 p-5'>
-            <div className='flex flex-col bg-white p-5 rounded-xl'>
-                <span className='text-2xl'>Incoming Todo</span>
-                <span className='text-lg mt-1'>Subject: Networking</span>
-                <span className='text-lg mt-1'>8:00PM Friday Aug 12</span>
-            </div>
+            <Incoming MyTodo = {passTodo}/>
         </main>
     )
 }

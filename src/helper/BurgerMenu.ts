@@ -22,10 +22,12 @@ export const BurgerMenuInfo = [
         text: 'My Routine',
         link: '/Routine',
         current: false,
+        icon: 'fa-light fa-cloud-sun'
     },
     {
         text: 'Bookmarks',
         link: '/Bookmarks',
         current: false,
+        icon: 'fa-regular fa-book-bookmark'
     }
 ]

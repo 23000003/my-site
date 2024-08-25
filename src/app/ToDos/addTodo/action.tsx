@@ -1,0 +1,18 @@
+import axios from "axios";
+import { ToDoType } from "@/types/types";
+import { server } from "@/helper/config";
+
+export const SubmitAddToDo = async(toDo: ToDoType): Promise<string> =>{
+
+    const { title, content, deadlineAt, userId } = toDo;
+
+    try{
+        const data = await axios.post(`${server}/api/Todo`, { title, content, deadlineAt, userId });
+        
+        return data.data.message
+
+    }catch(err){
+        throw new Error("Unexpected Error");
+    }
+
+}

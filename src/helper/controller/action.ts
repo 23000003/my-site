@@ -8,7 +8,6 @@ import { User } from "@/types/schemaTypes";
 export const invalidateSecret = async(secret: string): Promise<User | null> => {
     
     const isValid = secret === process.env.SECRET_PASS;
-    console.log(isValid);
 
     if(!isValid){
         return null;
