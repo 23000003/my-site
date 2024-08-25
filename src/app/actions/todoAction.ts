@@ -1,16 +1,33 @@
 "use server"
-import axios from "axios";
 import { ToDoType } from "@/types/types";
 import { server } from "@/helper/config";
+import { revalidateTag } from "next/cache";
+
+interface FetchTodoResponse {
+    data: ToDoType[];
+}
+
 
 export const SubmitAddToDo = async(toDo: ToDoType): Promise<string> =>{
 
     const { title, content, deadlineAt, userId } = toDo;
 
     try{
-        const data = await axios.post(`${server}/api/Todo`, { title, content, deadlineAt, userId });
+        const res = await fetch(`${server}/api/Todo`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ title, content, deadlineAt, userId })
+        });
+
+        if (!res.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        revalidateTag('todos');
         
-        return data.data.message
+        return "Added Successfully"
 
     }catch(err){
         throw new Error("Unexpected Error");
@@ -21,9 +38,14 @@ export const SubmitAddToDo = async(toDo: ToDoType): Promise<string> =>{
 export const FetchToDo = async(): Promise<ToDoType[]> =>{
 
     try{
-        const MyTodo = await axios.get<{ data: ToDoType[] }>(`${server}/api/Todo`);
-        const passTodo = MyTodo.data.data;
-        return passTodo;
+        const res = await fetch(`${server}/api/Todo`, {
+            next: {
+                tags: ['todos'],
+            }
+        });
+        const data: FetchTodoResponse = await res.json();
+
+        return data.data;
     }catch(err){
         throw new Error("Unexpected Error");
     }
