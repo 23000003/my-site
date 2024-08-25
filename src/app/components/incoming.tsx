@@ -1,7 +1,7 @@
-'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { ToDoType } from '@/types/types';
+import { FetchToDo } from '../actions/todoAction';
 import { 
     formatTimestamp, 
     getCurrentDate, 
@@ -13,12 +13,26 @@ interface MyTodosProps {
     MyTodo: ToDoType[];
 }
 
-export default function Incoming({MyTodo} : MyTodosProps): JSX.Element {
+async function FetchToDoData(): Promise<ToDoType[]>{
+    
+    try{
+        const MyTodo = await FetchToDo();
+        return MyTodo;
+    }
+    catch(err){
+        return [];
+    }
+
+}
+
+
+export default async function Incoming(): Promise<JSX.Element>{
     
     const currentDate = getCurrentDate();
-
+    
+    const MyTodo = await FetchToDoData();
     const filteredTodos = MyTodo.filter(todo => formatDateForComparison(todo.deadlineAt) === currentDate);
-
+    
     return (
         <>
             {filteredTodos.length > 0 ? (
@@ -31,7 +45,7 @@ export default function Incoming({MyTodo} : MyTodosProps): JSX.Element {
                             <div className='mt-1 flex flex-row justify-between'>
                                 <span className='text-lg text-gray-500'>{formatTimestamp(todo.deadlineAt)}</span>
                                 <span className='text-lg text-gray-500'>{compareTimeDate(todo.deadlineAt)}</span>
-                            </div>
+                             </div>
                         </div>
                     ))}
                 </>

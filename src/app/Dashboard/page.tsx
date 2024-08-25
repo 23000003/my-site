@@ -1,17 +1,12 @@
+
 import React from 'react'
-import { server } from '@/helper/config'
-import { ToDoType } from '@/types/types'
-import axios from 'axios'
-import Incoming from './incoming';
-import { FetchToDo } from '../ToDos/addTodo/action';
+import Incoming from '../components/incoming';
 
-export default async function Dashboard(): Promise<JSX.Element >{
-
-    const passTodo = await FetchToDo();
+export default function Dashboard(): JSX.Element{
 
     return (
         <main className='mt-14 p-5'>
-            <Incoming MyTodo = {passTodo}/>
+            <Incoming />
         </main>
     )
 }

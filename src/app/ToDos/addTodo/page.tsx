@@ -1,5 +1,5 @@
 import React from 'react'
-import Form from './form'
+import Form from '../../components/form'
 
 export default function AddTodos(): JSX.Element {
     

@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import NavigateButton from '../ToDos/navigateButton'
+import NavigateButton from '../components/navigateButton'
 import { useRouter } from 'next/navigation'
 
 export default function NotesChannel(): JSX.Element {

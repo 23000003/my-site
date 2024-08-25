@@ -1,3 +1,4 @@
+"use server"
 import axios from "axios";
 import { ToDoType } from "@/types/types";
 import { server } from "@/helper/config";
@@ -19,8 +20,12 @@ export const SubmitAddToDo = async(toDo: ToDoType): Promise<string> =>{
 
 export const FetchToDo = async(): Promise<ToDoType[]> =>{
 
-    const MyTodo = await axios.get<{ data: ToDoType[] }>(`${server}/api/Todo`);
-    const passTodo = MyTodo.data.data;
+    try{
+        const MyTodo = await axios.get<{ data: ToDoType[] }>(`${server}/api/Todo`);
+        const passTodo = MyTodo.data.data;
+        return passTodo;
+    }catch(err){
+        throw new Error("Unexpected Error");
+    }
 
-    return passTodo;
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { SubmitAddToDo } from './action';
+import { SubmitAddToDo } from '../actions/todoAction';
 import { ToDoType } from '@/types/types';
 
 export default function Form(): JSX.Element {

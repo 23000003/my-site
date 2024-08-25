@@ -1,14 +1,29 @@
-'use client'
-
 import React from 'react'
 import { ToDoType } from '@/types/types';
-import { formatTimestamp } from '@/helper/timeconverter';
+import { 
+    formatTimestamp, 
+} from '@/helper/timeconverter';
+import { FetchToDo } from '../actions/todoAction';
 
 interface MyTodosProps {
     MyTodo: ToDoType[];
 }
 
-export default function MyTodos({MyTodo}: MyTodosProps): JSX.Element {
+async function FetchToDoData(): Promise<ToDoType[]>{
+    
+    try{
+        const MyTodo = await FetchToDo();
+        return MyTodo;
+    }
+    catch(err){
+        return [];
+    }
+
+}
+
+export default async function MyTodos(): Promise<JSX.Element> {
+    
+    const MyTodo = await FetchToDoData();
 
     return (
         <>

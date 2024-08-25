@@ -1,7 +1,6 @@
-//app/helper/action.ts
 "use server"
 import axios from "axios";
-import { server } from "../config";
+import { server } from "@/helper/config";
 import { User } from "@/types/schemaTypes";
 
 

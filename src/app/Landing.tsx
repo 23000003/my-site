@@ -3,7 +3,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { invalidateSecret } from '../helper/controller/action';
+import { invalidateSecret } from './actions/secretAction';
 import { User } from '@/types/schemaTypes';
 import Image from 'next/image';
 
