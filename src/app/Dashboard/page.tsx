@@ -3,11 +3,11 @@ import { server } from '@/helper/config'
 import { ToDoType } from '@/types/types'
 import axios from 'axios'
 import Incoming from './incoming';
+import { FetchToDo } from '../ToDos/addTodo/action';
 
 export default async function Dashboard(): Promise<JSX.Element >{
 
-    const MyTodo = await axios.get<{ data: ToDoType[] }>(`${server}/api/Todo`);
-    const passTodo = MyTodo.data.data;
+    const passTodo = await FetchToDo();
 
     return (
         <main className='mt-14 p-5'>
