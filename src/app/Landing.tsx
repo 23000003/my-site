@@ -8,15 +8,11 @@ import { User } from '@/types/schemaTypes';
 
 export default function Landing(): JSX.Element {
     
-    const [timeout, setTimeout] = useState<boolean>(false);
+    const [timeout, setTime] = useState<boolean>(true);
     const [secretPass, setSecretPass] = useState<string>('');
     const [error, setError] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(false);
     const navigate = useRouter();
-
-    // if (!timeout) {
-    //     return <div>Loading...</div>;
-    // }
 
     const PassSecret = async (): Promise<void> => {
         setLoading(true);
@@ -40,11 +36,16 @@ export default function Landing(): JSX.Element {
         setLoading(false);
     }
 
+    useEffect(() =>{
+        setTimeout(() =>{
+            setTime(false);
+        }, 5000);
+    }, []);
 
-    console.log(error);
     return (
         <div className='w-screen h-screen flex flex-row justify-center items-center'>
-            <div className='bg-white shadow-xl border w-96 p-8'>
+            {!timeout ? (
+                <div className='bg-white shadow-xl border w-96 p-8'>
                 <div className='flex flex-col items-center'>
                     <form action={PassSecret} className='flex flex-col w-full mt-3'>
                         <label htmlFor="secret">Enter Secret Pass</label>
@@ -66,6 +67,11 @@ export default function Landing(): JSX.Element {
                     {loading && <p className='mt-3 text-green-500'>Loading....</p>}
                 </div>
             </div>
+            ) : (
+                <div className='w-64'>
+                    <img src="/loading.gif" alt="loading" />
+                </div>
+            )}
         </div>
     );
 }

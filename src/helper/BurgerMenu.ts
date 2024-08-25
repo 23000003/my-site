@@ -17,5 +17,15 @@ export const BurgerMenuInfo = [
         link: '/Notes',
         current: false,
         icon: 'fa-regular fa-note-sticky',
+    },
+    {
+        text: 'My Routine',
+        link: '/Routine',
+        current: false,
+    },
+    {
+        text: 'Bookmarks',
+        link: '/Bookmarks',
+        current: false,
     }
 ]
