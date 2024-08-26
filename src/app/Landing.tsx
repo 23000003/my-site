@@ -33,7 +33,6 @@ export default function Landing(): JSX.Element {
                 localStorage.setItem("name", validate.User.name);
                 localStorage.setItem("email", validate.User.email);
                 setTimeout(() =>{
-                    setLoading(false);
                     navigate.push('/Dashboard');
                 }, 1000)
             }
@@ -62,11 +61,13 @@ export default function Landing(): JSX.Element {
                             id='secret'
                             className='border mt-2 h-8'
                             value={secretPass}
-                            onChange={(e) => {setSecretPass(e.target.value), setError('')}}
+                            onChange={(e) => setSecretPass(e.target.value)}
                         />
                         <button
-                            className='mt-5 py-2 bg-blue-800 text-white'
+                            className={!loading ? `mt-5 py-2 bg-blue-800 text-white` : `mt-5 py-2 bg-blue-300 text-white`}
                             type='submit'
+                            disabled={loading}
+                            onClick={() => setError('')}
                         >
                             Access
                         </button>
