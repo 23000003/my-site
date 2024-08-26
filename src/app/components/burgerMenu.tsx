@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { BurgerMenuInfo } from '@/helper/BurgerMenu';
 import { usePathname, useRouter } from 'next/navigation';
 import getSession from '@/middleware/session';
-
+import Link from 'next/link';
 
 export default function BurgerMenu(): JSX.Element {
 
@@ -79,10 +79,11 @@ export default function BurgerMenu(): JSX.Element {
                     <hr className='my-4'/>
                     
                     {BurgerMenuInfo.map((burger, index) => (
-                        <div 
+                        <Link
+                            href={burger.link} 
                             className='mt-3 cursor-pointer hover:bg-gray-200 px-5 py-3 rounded-lg trasition duration-200 flex items-center' 
                             key={index}
-                            onClick={() => {navigate.push(burger.link), handleClick()}}
+                            onClick={handleClick}
                         >
                             <div className='flex w-5'>
                                 <i className={burger.icon}></i>
@@ -90,7 +91,7 @@ export default function BurgerMenu(): JSX.Element {
                             <div className='flex'>
                                 <span className='ml-3'>{burger.text}</span>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
                 <div className='text-center mb-10 cursor-pointer hover:text-red-800 text-red-500'>

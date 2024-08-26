@@ -16,6 +16,8 @@
     "drizzle-orm": "^0.33.0",
     "jsonwebtoken": "^9.0.2",
     "next": "14.2.6",
+    "nextjs-progressbar": "^0.0.16",
+    "nextjs-toploader": "^1.6.12",
     "react": "^18",
     "react-dom": "^18",
     "react-transition-group": "^4.4.5",

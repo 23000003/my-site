@@ -16,20 +16,26 @@ export default function Landing(): JSX.Element {
     const navigate = useRouter();
 
     const PassSecret = async (): Promise<void> => {
+        
         try{
-            setLoading(true);
             const validate: User | null = await invalidateSecret(secretPass);
-            
+            setLoading(true)
+
             if(validate === null){
-                setLoading(false);
-                setError("Wrong Secret")
+                setTimeout(() => {
+                    setError("Wrong Secret")
+                    setLoading(false);
+                }, 1000);
+
             }else{
                 localStorage.setItem("token", validate.User.myToken);
                 localStorage.setItem("id", validate.User.id.toString());
                 localStorage.setItem("name", validate.User.name);
                 localStorage.setItem("email", validate.User.email);
-                setLoading(false);
-                navigate.push('/Dashboard');
+                setTimeout(() =>{
+                    setLoading(false);
+                    navigate.push('/Dashboard');
+                }, 1000)
             }
         }catch(err){
             setLoading(false);
@@ -43,7 +49,7 @@ export default function Landing(): JSX.Element {
         }, 5000);
     }, []);
 
-
+    console.log(loading);
     return (
         <div className='w-screen h-screen flex flex-row justify-center items-center'>
             {!timeout ? (
@@ -56,7 +62,7 @@ export default function Landing(): JSX.Element {
                             id='secret'
                             className='border mt-2 h-8'
                             value={secretPass}
-                            onChange={(e) => setSecretPass(e.target.value)}
+                            onChange={(e) => {setSecretPass(e.target.value), setError('')}}
                         />
                         <button
                             className='mt-5 py-2 bg-blue-800 text-white'
