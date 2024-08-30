@@ -2,12 +2,14 @@
 import React, { useEffect, useState } from 'react'
 import { ToDoType } from '@/types/types';
 import { FetchToDo } from '../actions/todoAction';
+import { revalidateTag } from "next/cache";
 import { 
     formatTimestamp, 
     getCurrentDate, 
     formatDateForComparison, 
     compareTimeDate 
 } from '@/helper/timeconverter';
+import RevalidateButton from './revalidateButton';
 
 interface MyTodosProps {
     MyTodo: ToDoType[];
@@ -48,6 +50,7 @@ export default async function Incoming(): Promise<JSX.Element>{
                              </div>
                         </div>
                     ))}
+                    <RevalidateButton/>
                 </>
             ) : (
                 <div>No Todos Due Today</div>

@@ -7,6 +7,10 @@ interface FetchTodoResponse {
     data: ToDoType[];
 }
 
+export const Revalidating = async (): Promise<void> =>{
+    revalidateTag('todos');
+}
+
 
 export const SubmitAddToDo = async(toDo: ToDoType): Promise<string> =>{
 
@@ -25,7 +29,7 @@ export const SubmitAddToDo = async(toDo: ToDoType): Promise<string> =>{
             throw new Error('Network response was not ok');
         }
 
-        revalidateTag('todos');
+        await Revalidating();
         
         return "Added Successfully"
 

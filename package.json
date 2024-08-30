@@ -22,7 +22,8 @@
     "react-dom": "^18",
     "react-transition-group": "^4.4.5",
     "schedulely": "^0.3.5",
-    "scheduly": "^1.0.1"
+    "scheduly": "^1.0.1",
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.6",

@@ -67,7 +67,7 @@ export default function Landing(): JSX.Element {
                             className={!loading ? `mt-5 py-2 bg-blue-800 text-white` : `mt-5 py-2 bg-blue-300 text-white`}
                             type='submit'
                             disabled={loading}
-                            onClick={() => setError('')}
+                            onClick={() => {setError('')}}
                         >
                             Access
                         </button>
