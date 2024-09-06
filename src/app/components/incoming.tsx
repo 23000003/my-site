@@ -50,11 +50,11 @@ export default async function Incoming(): Promise<JSX.Element>{
                              </div>
                         </div>
                     ))}
-                    <RevalidateButton/>
                 </>
             ) : (
                 <div>No Todos Due Today</div>
             )}
+            <RevalidateButton/>
         </>
     );
 

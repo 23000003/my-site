@@ -5,3 +5,7 @@ export interface ToDoType{
     deadlineAt: string;
     userId: number;
 }
+
+export interface Params {
+    subject: string;
+}
