@@ -4,7 +4,6 @@ import { Revalidating } from '../actions/todoAction'
 
 export default function RevalidateButton(): JSX.Element {
     
-    
     useEffect(() =>{
         const Revalidate = async () =>{
             await Revalidating();

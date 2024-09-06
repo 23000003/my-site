@@ -2,13 +2,10 @@
 
 import React from 'react'
 import NavigateButton from '../components/navigateButton'
-import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
 export default function NotesChannel(): JSX.Element {
     
-    const navigate = useRouter();
-
     const subject = "try";
 
     return (
