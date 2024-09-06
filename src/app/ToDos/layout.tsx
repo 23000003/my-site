@@ -7,10 +7,7 @@ export const metadata = {
 export default function TodosLayout({ children, }: { children: React.ReactNode }) {
     
     return (
-        <>
-        <NextTopLoader height={5}/>
         <section>{children}</section>
-        </>
     );
 
 }
