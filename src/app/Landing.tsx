@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { invalidateSecret } from './actions/secretAction';
-import { User } from '@/types/schemaTypes';
+import { User } from '@/types/types';
 import Image from 'next/image';
 
 export default function Landing(): JSX.Element {
@@ -64,7 +64,7 @@ export default function Landing(): JSX.Element {
                             onChange={(e) => setSecretPass(e.target.value)}
                         />
                         <button
-                            className={!loading ? `mt-5 py-2 bg-blue-800 text-white` : `mt-5 py-2 bg-blue-300 text-white`}
+                            className={`mt-5 py-2 text-white ${!loading ? 'bg-blue-800' : 'bg-blue-300'}`}
                             type='submit'
                             disabled={loading}
                             onClick={() => {setError('')}}

@@ -2,12 +2,17 @@
 import { ToDoType } from "@/types/types";
 import { server } from "@/helper/config";
 import { revalidateTag } from "next/cache";
+import axios from "axios";
 
 interface FetchTodoResponse {
     data: ToDoType[];
 }
 
-export const Revalidating = async (): Promise<void> =>{
+interface PostTodoResponse {
+    message: string;
+}
+
+export const TodoRevalidating = async (): Promise<void> =>{
     revalidateTag('todos');
 }
 
@@ -29,9 +34,11 @@ export const SubmitAddToDo = async(toDo: ToDoType): Promise<string> =>{
             throw new Error('Network response was not ok');
         }
 
-        await Revalidating();
+        await TodoRevalidating();
         
-        return "Added Successfully"
+        const data: PostTodoResponse = await res.json();
+
+        return data.message;
 
     }catch(err){
         throw new Error("Unexpected Error");
@@ -43,6 +50,7 @@ export const FetchToDo = async(): Promise<ToDoType[]> =>{
 
     try{
         const res = await fetch(`${server}/api/Todo`, {
+            method: 'GET',
             next: {
                 tags: ['todos'],
             }

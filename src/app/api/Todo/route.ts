@@ -30,12 +30,12 @@ export async function GET(){
     try{
         const now = new Date().toISOString(); 
 
-        const result = await db.select()
+        const res = await db.select()
             .from(todoTable)
             .where(sql `${todoTable.userId} = 1 and ${todoTable.deadlineAt} > ${now}`)
             .orderBy(asc(todoTable.deadlineAt));
 
-        return NextResponse.json({ data: result }, {status: 200});
+        return NextResponse.json({ data: res }, {status: 200});
     }catch(err){
         return NextResponse.json({ message: 'Error processing request' }, { status: 500 });
     }

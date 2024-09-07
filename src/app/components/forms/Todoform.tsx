@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { SubmitAddToDo } from '../actions/todoAction';
+import { SubmitAddToDo } from '../../actions/todoAction';
 import { ToDoType } from '@/types/types';
 
 export default function Form(): JSX.Element {
@@ -34,14 +34,16 @@ export default function Form(): JSX.Element {
         try{
             const data:string = await SubmitAddToDo(newToDo);
             setError(null);
-            setLoading(false)
             setMessage(data);
             setDate('');
             setDetails('');
             setSubject('');
-        }catch(err: any){
-            setLoading(false)
-            setError(err.message)
+        }
+        catch(err){
+            setError((err as Error).message)
+        }
+        finally{
+            setLoading(false);
         }
     }
 
@@ -77,8 +79,9 @@ export default function Form(): JSX.Element {
             />
             
             <button 
-                className='mt-5 bg-blue-500 h-10 rounded-sm text-white'
+                className={`mt-5 h-10 rounded-sm text-white ${!loading ? 'bg-blue-800' : 'bg-blue-300'}`}
                 type='submit'
+                aria-disabled={loading}
             >Add</button>
             {error && <p className='mt-3 text-red-500 text-center'>{error}</p>}
             {message && <p className='mt-3 text-green-500 text-center'>{message}</p>}

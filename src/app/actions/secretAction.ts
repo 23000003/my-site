@@ -1,7 +1,7 @@
 "use server"
 import axios from "axios";
 import { server } from "@/helper/config";
-import { User } from "@/types/schemaTypes";
+import { User } from "@/types/types";
 
 
 export const invalidateSecret = async(secret: string): Promise<User | null> => {
