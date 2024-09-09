@@ -27,7 +27,7 @@ export default async function NotesChannel(): Promise<JSX.Element> {
                         key={index}
                         className='flex flex-row px-5 mb-5 rounded-md h-24 items-center justify-between bg-white
                             hover:bg-slate-200 transition duration-200 cursor-pointer'
-                        href={`/Notes/${subject.title}`}
+                        href={`/Notes/${subject.id}?v=${subject.title}`}
                     >
                         <span className='text-lg'>{subject.title}</span>
                         <i className="fa-solid fa-arrow-right"></i>

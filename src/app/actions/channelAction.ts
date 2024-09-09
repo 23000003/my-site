@@ -7,7 +7,7 @@ interface GetChannel {
     data: Channel[];
 }
 
-interface PostChannel{
+interface PostMessage{
     message: string;
 }
 
@@ -30,7 +30,7 @@ export const AddChannel = async(channelType: Channel) : Promise<string> =>{
 
         await ChannelRevalidating();
 
-        const data : PostChannel = await res.json();
+        const data : PostMessage = await res.json();
 
         return data.message;
     }
@@ -51,7 +51,7 @@ export const GetChannel = async() : Promise<Channel[]> =>{
         });
 
         const data:GetChannel = await res.json();
-
+        console.log(data.data);
         return data.data;
     }
     catch(err){

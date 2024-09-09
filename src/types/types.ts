@@ -21,8 +21,8 @@ export interface User {
 };
 
 export interface Channel{
+    id?: number,
     userId?: number,
-    channelId?: number,
     title: string
 }
 
@@ -30,5 +30,5 @@ export interface Content{
     title: string,
     content: string,
     channelId: number,
-    createdAt: string,
+    createdAt: Date,
 }
