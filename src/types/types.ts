@@ -27,6 +27,7 @@ export interface Channel{
 }
 
 export interface Content{
+    id?: number,
     title: string,
     content: string,
     channelId: number,

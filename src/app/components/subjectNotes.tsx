@@ -1,38 +1,45 @@
+"use client"
+
 import { Content } from '@/types/types';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React from 'react'
-import { GetNotes } from '../actions/NotesAction';
-import { revalidateTag } from 'next/cache';
+import React, { useState } from 'react'
+import { DeleteNote } from '../actions/NotesAction';
 import { formatTimestamp } from '@/helper/timeconverter';
 
 interface Props {
     subject: string;
+    MyNotes: Content[];
 }
 
-async function FetchNotes(subject: string): Promise<Content[]> {
 
-    try{
-        const MyNotes = await GetNotes(subject);
-        return MyNotes;
-    }catch(err){
-        return [];
-    }
-
-}
-
-export default async function SubjectNotes({ subject } : Props ): Promise<JSX.Element> {
+export default function SubjectNotes({ subject, MyNotes } : Props ): JSX.Element {
     
-    const MyNotes = await FetchNotes(subject);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [message, setMessage] = useState<string | null>(null);
 
+    const TriggerDeleteNote = (id: number | undefined) =>{
+        setLoading(true);
+        const tryy = async () =>{
+            const res = await DeleteNote(id);   
+            setLoading(false);
+            setMessage(res);
+        }
+        tryy();
+    }
     return (
         <>
         {MyNotes.length > 0 ? (
             MyNotes.map((notes, index) => (
                 <div className='bg-white p-5 mt-5' key={index}>
                     <div className='flex flex-row justify-between'>
-                        <div className='font-bold'>
-                            {notes.title}
+                        <div className='flex flex-row items-center'>
+                            <div className='font-bold'>
+                                {notes.title}
+                            </div>
+                            <i 
+                                className="fa-solid text-red-500 fa-trash-can ml-5 cursor-pointer hover:text-red-400"
+                                onClick={() => TriggerDeleteNote(notes.id)}
+                            ></i>
                         </div>
                         <div>
                             {formatTimestamp(notes.createdAt.toString())}
@@ -50,9 +57,10 @@ export default async function SubjectNotes({ subject } : Props ): Promise<JSX.El
                 <span className='mt-5'>No Notes :(</span>
             </div>
         )}
-
+        {loading && (<img src="/loading.gif" alt="" className='w-14 fixed right-20 top-0'/>)}
+        {message && (<div className='fixed right-20 top-4 text-green-500'>{message}</div>)}
         <Link 
-            className='bg-slate-500 -z-50 text-white fixed bottom-10 right-14 px-5 py-3 rounded-xl cursor-pointer hover:bg-slate-400'
+            className='bg-slate-500 text-white fixed bottom-10 right-14 px-5 py-3 rounded-xl cursor-pointer hover:bg-slate-400'
             href={`${subject}/addNotes`}
         >
             Add Notes

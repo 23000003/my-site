@@ -36,7 +36,7 @@ export const PostNotes = async(Notes: Content) : Promise<string> =>{
         return data.message;
     }catch(err){
         console.log(err);
-        throw new Error("Unexpected Error");
+        throw new Error((err as Error).message);
     }
 
 }
@@ -57,6 +57,28 @@ export const GetNotes = async(id: string) : Promise<Content[]> => {
         return data.data;
 
     }catch(err){
-        throw new Error("Unexpected Error")
+        throw new Error((err as Error).message);
+    }
+}
+
+export const DeleteNote = async (id: number | undefined) : Promise<string> =>{
+
+    if(!id){
+        return "Undefined";
+    }
+
+    try{
+        const res = await fetch(`${server}/api/Notes/${id}`, {
+            method: 'DELETE'
+        });
+
+        await NotesRevalidating();
+        const data : NotesMessage = await res.json();
+
+        return data.message;
+
+    }catch(err){
+        console.log(err);
+        return (err as Error).message;
     }
 }

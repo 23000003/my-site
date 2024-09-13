@@ -1,14 +1,12 @@
 'use client'
 import React, { useEffect } from 'react'
 import { TodoRevalidating } from '../actions/todoAction'
-import { NotesRevalidating } from '../actions/NotesAction';
 
 export default function RevalidateButton(): JSX.Element {
     
     useEffect(() =>{
         const Revalidate = async () =>{
             await TodoRevalidating();
-            await NotesRevalidating();
         }
         Revalidate();
     },[]);

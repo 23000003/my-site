@@ -2,7 +2,6 @@
 import { ToDoType } from "@/types/types";
 import { server } from "@/helper/config";
 import { revalidateTag } from "next/cache";
-import axios from "axios";
 
 interface FetchTodoResponse {
     data: ToDoType[];
@@ -41,7 +40,7 @@ export const SubmitAddToDo = async(toDo: ToDoType): Promise<string> =>{
         return data.message;
 
     }catch(err){
-        throw new Error("Unexpected Error");
+        throw new Error((err as Error).message);
     }
 
 }
@@ -59,7 +58,7 @@ export const FetchToDo = async(): Promise<ToDoType[]> =>{
 
         return data.data;
     }catch(err){
-        throw new Error("Unexpected Error");
+        throw new Error((err as Error).message);
     }
 
 }

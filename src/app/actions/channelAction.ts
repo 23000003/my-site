@@ -36,7 +36,7 @@ export const AddChannel = async(channelType: Channel) : Promise<string> =>{
     }
     catch(err){
         console.log(err)
-        throw new Error("Unexpected Error");
+        throw new Error((err as Error).message);
     }
 }
 
@@ -55,7 +55,7 @@ export const GetChannel = async() : Promise<Channel[]> =>{
         return data.data;
     }
     catch(err){
-        throw new Error("Unexpected Error");
+        throw new Error((err as Error).message);
     }
 }
 
