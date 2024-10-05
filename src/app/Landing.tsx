@@ -57,7 +57,7 @@ export default function Landing(): JSX.Element {
                     <form action={PassSecret} className='flex flex-col w-full mt-3'>
                         <label htmlFor="secret">Enter Secret Pass</label>
                         <input
-                            type="text"
+                            type="password"
                             id='secret'
                             className='border mt-2 h-8'
                             value={secretPass}

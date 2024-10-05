@@ -47,6 +47,14 @@ export default function BurgerMenu(): JSX.Element {
         return <></>
     }
 
+    useEffect(() =>{
+        document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+
+        // return () =>{
+        //     document.body.style.overflow = 'auto';
+        // }
+    }, [isOpen])
+
     return (
         <>
         <div className='flex items-center h-full px-5 justify-between'>
