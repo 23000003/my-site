@@ -3,6 +3,7 @@ import { AddChannel } from '@/app/actions/channelAction';
 import { Channel } from '@/types/types';
 import { revalidateTag } from 'next/cache';
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 export default function Channelform(): JSX.Element {
 
@@ -64,7 +65,7 @@ export default function Channelform(): JSX.Element {
                 >Add</button>
                 {error && <p className='mt-3 text-red-500 text-center'>{error}</p>}
                 {message && <p className='mt-3 text-green-500 text-center'>{message}</p>}
-                {loading && <img src="/loading.gif" alt="" className='w-24 m-auto'/>}
+                {loading && <Image src="/loading.gif" alt="" className='w-24 m-auto'/>}
             </div>
         </form>
     )

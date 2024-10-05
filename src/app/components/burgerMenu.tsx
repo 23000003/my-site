@@ -5,6 +5,7 @@ import { BurgerMenuInfo } from '@/helper/BurgerMenu';
 import { usePathname, useRouter } from 'next/navigation';
 import getSession from '@/middleware/session';
 import Link from 'next/link';
+import Image from 'next/image'
 
 export default function BurgerMenu(): JSX.Element {
 
@@ -30,6 +31,14 @@ export default function BurgerMenu(): JSX.Element {
             getSessW();
         }
     }, []);
+
+    useEffect(() =>{
+        document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+
+        // return () =>{
+        //     document.body.style.overflow = 'auto';
+        // }
+    }, [isOpen])
     
     const navLabel = useMemo((): string => {
         const menuItem = BurgerMenuInfo.find(item => item.link === pathname);
@@ -46,14 +55,6 @@ export default function BurgerMenu(): JSX.Element {
     if(pathname == '/'){
         return <></>
     }
-
-    useEffect(() =>{
-        document.body.style.overflow = isOpen ? 'hidden' : 'auto';
-
-        // return () =>{
-        //     document.body.style.overflow = 'auto';
-        // }
-    }, [isOpen])
 
     return (
         <>
@@ -81,7 +82,7 @@ export default function BurgerMenu(): JSX.Element {
             <div className={`h-screen w-64 bg-white fixed right-0 border-l-2 flex flex-col -mt-14 Menu ${slidingAnim ? 'MenuTab-slide-in' : 'MenuTab-slide-out'}`}>
                 <div className='p-6 flex-1'>
                     <div className='flex flex-row items-center'>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjspNyVZ_RBiG68niLT-38T93kitl5Qk5nNw&s" className='w-10 rounded-3xl' />
+                        <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjspNyVZ_RBiG68niLT-38T93kitl5Qk5nNw&s" className='w-10 rounded-3xl' alt="" />
                         <span className='ml-4'>Username</span>
                     </div>
                     <hr className='my-4'/>

@@ -4,6 +4,7 @@ import { PostNotes } from '@/app/actions/NotesAction';
 import { Content } from '@/types/types';
 import { useParams } from 'next/navigation';
 import React, { useState } from 'react'
+import Image from 'next/image'
 
 export default function NotesForm() {
 
@@ -76,7 +77,7 @@ export default function NotesForm() {
                 >Add</button>
                 {error && <p className='mt-3 text-red-500 text-center'>{error}</p>}
                 {message && <p className='mt-3 text-green-500 text-center'>{message}</p>}
-                {loading && <img src="/loading.gif" alt="" className='w-24 m-auto'/>}
+                {loading && <Image src="/loading.gif" alt="" className='w-24 m-auto'/>}
                 {/* <p className='mt-3 text-green-500 whitespace-pre-wrap'>{content}</p> */}
             </div>
         </form>
