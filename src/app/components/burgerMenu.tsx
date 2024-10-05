@@ -82,7 +82,7 @@ export default function BurgerMenu(): JSX.Element {
             <div className={`h-screen w-64 bg-white fixed right-0 border-l-2 flex flex-col -mt-14 Menu ${slidingAnim ? 'MenuTab-slide-in' : 'MenuTab-slide-out'}`}>
                 <div className='p-6 flex-1'>
                     <div className='flex flex-row items-center'>
-                        <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjspNyVZ_RBiG68niLT-38T93kitl5Qk5nNw&s" className='w-10 rounded-3xl' alt="" />
+                        <Image src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjspNyVZ_RBiG68niLT-38T93kitl5Qk5nNw&s" className='w-10 rounded-3xl' alt=""  width={40} height={40}/>
                         <span className='ml-4'>Username</span>
                     </div>
                     <hr className='my-4'/>

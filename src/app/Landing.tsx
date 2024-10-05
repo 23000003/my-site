@@ -73,12 +73,12 @@ export default function Landing(): JSX.Element {
                         </button>
                     </form>
                     {error && <p className='mt-3 text-red-500'>{error}</p>}
-                    {loading && <Image src="/loading.gif" alt="loading" className='w-16 mt-4'/>}
+                    {loading && <Image src="/loading.gif" alt="loading" className='w-16 mt-4' width={64} height={64}/>}
                 </div>
             </div>
             ) : (
                 <div className='w-64'>
-                    <Image src="/loading.gif" alt="loading" />
+                    <Image src="/loading.gif" alt="loading" width={256} height={256}/>
                 </div>
             )}
         </div>

@@ -77,7 +77,7 @@ export default function NotesForm() {
                 >Add</button>
                 {error && <p className='mt-3 text-red-500 text-center'>{error}</p>}
                 {message && <p className='mt-3 text-green-500 text-center'>{message}</p>}
-                {loading && <Image src="/loading.gif" alt="" className='w-24 m-auto'/>}
+                {loading && <Image src="/loading.gif" alt="" className='w-24 m-auto' width={96} height={96}/>}
                 {/* <p className='mt-3 text-green-500 whitespace-pre-wrap'>{content}</p> */}
             </div>
         </form>

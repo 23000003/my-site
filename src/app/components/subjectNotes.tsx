@@ -54,11 +54,11 @@ export default function SubjectNotes({ subject, MyNotes } : Props ): JSX.Element
             ))
         ) : (
             <div className='flex flex-col items-center justify-center mt-28'>
-                <Image src="/SadFace.jpg" className='w-32' alt=""/>
+                <Image src="/SadFace.jpg" className='w-32' alt="" width={128} height={128}/>
                 <span className='mt-5'>No Notes :(</span>
             </div>
         )}
-        {loading && (<Image src="/loading.gif" alt="" className='w-14 fixed right-20 top-0'/>)}
+        {loading && (<Image src="/loading.gif" alt="" className='w-14 fixed right-20 top-0' width={56} height={56}/>)}
         {message && (<div className='fixed right-20 top-4 text-green-500'>{message}</div>)}
         <Link 
             className='bg-slate-500 text-white fixed bottom-10 right-14 px-5 py-3 rounded-xl cursor-pointer hover:bg-slate-400'
